@@ -62,6 +62,7 @@ export default {
         const res = await login(users)
         console.log('登陆成功', res)
         this.$toast.success('登陆成功')
+        this.$router.push('/index')
       } catch (err) {
         if (err.response.status === 400) {
           this.$toast.fail('手机号或者验证码错误')
