@@ -2,11 +2,13 @@
 <div class="login-container">
     <van-nav-bar
       title="登录"
-    />
+    >
+    <van-icon v-if="$store.state.user" @click="$router.back()" style="color:#fff; font-size: 20px" slot="left" name="cross" />
+    </van-nav-bar>
     <van-form ref="loginForm" @submit="onSubmit">
       <van-field
         v-model="user.mobile"
-        name="用户名"
+        name="userMobile"
         placeholder="用户名"
         left-icon="manager-o"
         :rules="userRules.mobile"
@@ -15,7 +17,7 @@
       <van-field
         v-model="user.code"
         type="password"
-        name="密码"
+        name="userCode"
         placeholder="请输入验证码"
         left-icon="eye-o"
         :rules="userRules.code"
@@ -43,26 +45,29 @@ export default {
         mobile: '13911111111',
         code: '246810'
       },
+      us: '',
+      // 判断是否显示倒计时和发送验证码按钮
       isShow: false,
-      userRules: [{
-        mobile: [{ required: true, message: '请输入手机号' }],
-        code: [{ required: true, message: '请输入验证码' }]
-      }]
+      userRules: {
+        mobile: [{ required: true, message: '手机号不能为空' }],
+        code: [{ required: true, message: '验证码不能为空' }]
+      }
     }
   },
   methods: {
     async onSubmit () {
-      const users = this.user
+      const user = this.user
       this.$toast.loading({
         message: '登录中...',
         forbidClick: true,
         duration: 0
       })
       try {
-        const res = await login(users)
+        const res = await login(user)
         console.log('登陆成功', res)
+        this.$store.commit('setUser', res.data.data)
         this.$toast.success('登陆成功')
-        this.$router.push('/index')
+        this.$router.push('/my')
       } catch (err) {
         if (err.response.status === 400) {
           this.$toast.fail('手机号或者验证码错误')
@@ -73,14 +78,13 @@ export default {
     },
     async onSend () {
       try {
-        await this.$refs.loginForm.validate()
+        await this.$refs.loginForm.validate('userMobile')
+        this.isShow = true
       } catch (err) {
         return console.log('验证失败', err)
       }
-      this.isShow = true
       try {
         const { res } = await sendSms(this.user.mobile)
-        this.$store.commit('setUser', res.data)
         this.$toast('发送成功', res)
       } catch (err) {
         this.isShow = false

@@ -14,10 +14,12 @@ import 'vant/lib/index.css'
 // 动态设置rem基准值
 import 'amfe-flexible'
 
+// 时间插件
+import './utils/dayjs.js'
+
 Vue.use(Vant)
 
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,

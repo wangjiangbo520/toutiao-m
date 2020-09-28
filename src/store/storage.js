@@ -1,3 +1,4 @@
+
 export const setItem = (key, value) => {
   if (typeof value === 'object') {
     value = JSON.stringify(value)
@@ -6,7 +7,7 @@ export const setItem = (key, value) => {
 }
 
 export const getItem = key => {
-  const data = window.localStorag.getItem(key)
+  const data = window.localStorage.getItem(key)
   try {
     return JSON.parse(data)
   } catch (err) {
