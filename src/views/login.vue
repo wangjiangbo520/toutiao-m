@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .van-nav-bar {
   height: 110px;
   background-color: blue;

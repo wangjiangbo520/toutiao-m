@@ -41,27 +41,30 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
   .articleListItemContainer span {
     margin-right: 30px;
   }
-.title {
-  font-size: 32px;
-  color: #3a3a3a;
-}
-.van-cell__value {
-  flex: unset;
-  width: 232px;
-  height: 146px;
-  padding-left: 25px;
-}
-.right-cover {
-   width: 232px;
-   height: 146px;
-}
-.left-cover {
-   width: 210px;
-   height: 120px;
-   margin-right: 10px;
+
+.articleListItemContainer {
+  .title {
+    font-size: 32px;
+    color: #3a3a3a;
+  }
+  .van-cell__value {
+    flex: unset;
+    width: 232px;
+    height: 146px;
+    padding-left: 25px;
+  }
+  .right-cover {
+     width: 232px;
+     height: 146px;
+  }
+  .left-cover {
+     width: 210px;
+     height: 120px;
+     margin-right: 10px;
+  }
 }
 </style>
