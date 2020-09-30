@@ -64,3 +64,23 @@ export const deleteChannels = itemId => {
     // url: '/app/v1_0/userr/channels/:target'
   })
 }
+
+// 删除频道接口
+export const getSuggest = key => {
+  return request({
+    method: 'get',
+    url: '/app/v1_0/suggestion',
+    params: {
+      q: key
+    }
+  })
+}
+
+// 获取搜索结果接口
+export const getSearhResults = params => {
+  return request({
+    method: 'get',
+    url: '/app/v1_0/search',
+    params
+  })
+}

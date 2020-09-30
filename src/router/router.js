@@ -10,6 +10,7 @@ const Home = () => import('@/views/home/home.vue')
 const Ask = () => import('@/views/ask/ask.vue')
 const Video = () => import('@/views/video/video.vue')
 const My = () => import('@/views/my/my.vue')
+const Search = () => import('@/views/home/search.vue')
 
 Vue.use(VueRouter)
 
@@ -27,7 +28,8 @@ const routes = [
       { path: '/video', component: Video },
       { path: '/my', component: My }
     ]
-  }
+  },
+  { path: '/search', component: Search }
 ]
 
 const router = new VueRouter({

@@ -8,6 +8,7 @@
     type="info"
     round
     icon="search"
+    to="/search"
     >搜索</van-button>
   </van-nav-bar>
   <van-tabs v-model="active" animated swipeable>
@@ -17,6 +18,7 @@
     :key="item.id">
     <!-- 文章内容区域，不包括导航 -->
       <articleList :DqChannel="item"></articleList>
+
     </van-tab>
     <div slot="nav-right" class="slot"></div>
     <div slot="nav-right" class="hamburder-btn"
